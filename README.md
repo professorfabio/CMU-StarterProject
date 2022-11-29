@@ -10,12 +10,25 @@ This repository contains the three main components used in the class project, na
 
 ## Steps to run the demo:
 
-a. Start Kafka on a cloud-based server
+### a. Start Kafka on a cloud-based server:
 
-b. On another cloud-based server, start virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service)
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
 
-c. On the Raspberry Pi, start the IoT-based Consumer and Producer
+$ bin/kafka-server-start.sh config/server.properties
 
-## Overall structure
+
+### b. On another cloud-based server:
+
+Run virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service)
+
+### c. On the Raspberry Pi:
+
+Run device-controler.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
+
+### d. On a client machine (may be on the cloud or on a local machine):
+
+Run the client code (for led control and thermometer access)
+
+## Overall structure of the system
 
 ![image](https://user-images.githubusercontent.com/13460193/204534405-b17b1abb-77e1-479a-8171-807dc610ee5d.png)
