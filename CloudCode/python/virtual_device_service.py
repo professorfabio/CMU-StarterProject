@@ -1,4 +1,5 @@
 from kafka import KafkaConsumer, KafkaProducer
+from const import *
 import threading
 
 from concurrent import futures
@@ -15,14 +16,14 @@ led_state = {'red':0, 'green':0}
 # Kafka consumer to run on a separate thread
 def consume_temperature():
     global current_temperature
-    consumer = KafkaConsumer(bootstrap_servers='35.226.115.184:9092')
+    consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
     consumer.subscribe(topics=('temperature'))
     for msg in consumer:
         print (msg.value.decode())
         current_temperature = msg.value.decode()
 
 def produce_led_command(state, ledname):
-    producer = KafkaProducer(bootstrap_servers='35.226.115.184:9092')
+    producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
     producer.send('ledcommand', key=ledname.encode(), value=str(state).encode())
     return state
         
