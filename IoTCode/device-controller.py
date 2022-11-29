@@ -4,6 +4,7 @@ from kafka import KafkaProducer, KafkaConsumer
 import math
 import threading
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+from const import *
 
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
@@ -15,7 +16,7 @@ GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 GPIO.setup(16, GPIO.OUT, initial=GPIO.LOW) # Set pin 16 to be an output pin and set initial value to low (off)
 GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW) # Idem for pin 18
 
-producer = KafkaProducer(bootstrap_servers='35.226.115.184:9092')
+producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
 last_reported = 0
 
 def read_temp_raw():
@@ -37,7 +38,7 @@ def read_temp():
         return temp_c, temp_f
 
 def consume_led_command():
-    consumer = KafkaConsumer(bootstrap_servers='35.226.115.184:9092')
+    consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
     consumer.subscribe(topics=('ledcommand'))
     ledpin = 0
     for msg in consumer:
