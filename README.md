@@ -44,7 +44,15 @@ $ python3 device-controler.py
 
 ### d. On a client machine (may be on the cloud or on a local machine):
 
-Run the client code (for led control and thermometer access)
+- Compile the interface:
+
+$ python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/iot_service.proto
+
+- Run the client code (for led control and thermometer access)
+
+$ python3 thermometer_client.py
+
+$ python3 led_client.py 1 red  --or-- $ python3 led_client.py 0 red (turn on and off, respectively. Just examples)
 
 ## Overall structure of the system
 
