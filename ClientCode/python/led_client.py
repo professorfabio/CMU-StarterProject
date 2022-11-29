@@ -15,7 +15,7 @@ def run():
         stub = iot_service_pb2_grpc.IoTServiceStub (channel)
         response = stub.BlinkLed(iot_service_pb2.LedRequest(state=int(sys.argv[1]),ledname=sys.argv[2]))
 
-    if response.ledstate == 1:
+    if response.ledstate[sys.argv[2]] == 1:
         print("Led state is on")
     else:
         print("Led state is off")
