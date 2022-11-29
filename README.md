@@ -10,11 +10,11 @@ This repository contains the three main components used in the class project, na
 
 ## Steps to run the demo:
 
-### a. Start Kafka on a cloud-based server
+a. Start Kafka on a cloud-based server
 
-### b. On another cloud-based server, start: cloud-based Consumer, Producer, and gRPC service
+b. On another cloud-based server, start virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service)
 
-### c. On the Raspberry Pi, start the IoT-based Consumer and Producer
+c. On the Raspberry Pi, start the IoT-based Consumer and Producer
 
 ## Overall structure
 
