@@ -38,7 +38,7 @@ class IoTServer(iot_service_pb2_grpc.IoTServiceServicer):
         produce_led_command(request.state, request.ledname)
         # Update led state of twin
         led_state[request.ledname] = request.state
-        return iot_service_pb2.LedReply(ledstate=led_state[request.ledname])
+        return iot_service_pb2.LedReply(ledstate=request.state)
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
