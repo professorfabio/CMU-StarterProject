@@ -19,11 +19,28 @@ $ bin/kafka-server-start.sh config/server.properties
 
 ### b. On another cloud-based server:
 
-Run virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service)
+- Install gRPC for Python - see instructions on https://grpc.io/docs/languages/python/quickstart/
+
+- Clone the repo: 
+
+$ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
+- Compile the interface (protocol buffer definition):
+
+$ python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/iot_service.proto
+
+- Run virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service):
+
+$ python3 virtual_device_service.py
 
 ### c. On the Raspberry Pi:
 
-Run device-controler.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
+- Clone the repo:
+
+$ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
+
+- Run device-controler.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
+
+$ python3 device-controler.py
 
 ### d. On a client machine (may be on the cloud or on a local machine):
 
