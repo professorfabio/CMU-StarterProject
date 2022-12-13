@@ -34,9 +34,18 @@ $ python3 virtual_device_service.py
 
 ### c. On the Raspberry Pi:
 
+- Install the Kafka Python client:
+
+$ pip3 install kafka-python
+
+(If necessary install python3-pip first)
+(Also if necessary, read this instructions to enable communication with the temperature sensore via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor)
+
 - Clone the repo:
 
 $ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
+
+(If necessary, install git)
 
 - Run device-controler.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
 
