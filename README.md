@@ -10,14 +10,16 @@ This repository contains the three main components used in the class project, na
 
 ## Steps to run the demo:
 
-### a. Start Kafka on a cloud-based server:
+### a. Start Kafka on a cloud-based server (server-1):
 
 $ bin/zookeeper-server-start.sh config/zookeeper.properties
 
 $ bin/kafka-server-start.sh config/server.properties
 
+(If necessary, edit the server.properties file to change the IP address of the Kafka Broker) 
 
-### b. On another cloud-based server:
+
+### b. On another cloud-based server (server-2):
 
 - Install gRPC for Python - see instructions on https://grpc.io/docs/languages/python/quickstart/
 
@@ -32,14 +34,19 @@ $ python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ..
 
 $ python3 virtual_device_service.py
 
+(If necessary, edit the const.py file with the IP address of the Kafka Broker -- server-1)
+
 ### c. On the Raspberry Pi:
 
 - Install the Kafka Python client:
 
 $ pip3 install kafka-python
 
-(If necessary install python3-pip first)
+(If necessary install python3-pip)
+
 (Also if necessary, read this instructions to enable communication with the temperature sensore via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor)
+
+(Also if necessary, edit the const.py file with the address of the gRPC server -- server-2)
 
 - Clone the repo:
 
@@ -62,6 +69,8 @@ $ python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ..
 $ python3 thermometer_client.py
 
 $ python3 led_client.py 1 red  --or-- $ python3 led_client.py 0 red (turn on and off, respectively. Just examples)
+
+(If necessary, edit the const.py file with the IP address of the gRPC server -- server-2)
 
 ## Overall structure of the system
 
