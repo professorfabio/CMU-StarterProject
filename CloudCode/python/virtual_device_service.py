@@ -20,7 +20,7 @@ def consume_temperature():
     consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
     consumer.subscribe(topics=('temperature'))
     for msg in consumer:
-        print (msg.value.decode())
+        print ('Received Temperature: ', msg.value.decode())
         current_temperature = msg.value.decode()
 
 # Kafka consumer to run on a separate thread
@@ -29,7 +29,7 @@ def consume_light_level():
     consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
     consumer.subscribe(topics=('lightlevel'))
     for msg in consumer:
-        print (msg.value.decode())
+        print ('Received Light Level: ', msg.value.decode())
         current_light_level = msg.value.decode()
 
 def produce_led_command(state, ledname):
@@ -63,7 +63,7 @@ def serve():
 
 if __name__ == '__main__':
     logging.basicConfig()
-    
+
     trd1 = threading.Thread(target=consume_temperature)
     trd1.start()
 
