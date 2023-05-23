@@ -1,4 +1,4 @@
-# SSU-2022_2-StarterProject
+# CMU Starter Project
 
 This repository contains the three main components used in the class project, namely:
 
