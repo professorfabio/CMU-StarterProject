@@ -56,11 +56,11 @@ $ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
 
 (If necessary, install git)
 
-- Run device-controler.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
+- Run device-controller.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
 
 $ cd IoTCode
 
-$ python3 device-controler.py
+$ python3 device-controller.py
 
 ### d. On a client machine (may be on the cloud or on a local machine):
 
