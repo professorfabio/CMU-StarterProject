@@ -25,7 +25,7 @@ $ bin/kafka-server-start.sh config/server.properties
 
 - Clone the repo: 
 
-$ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
+$ git clone https://github.com/professorfabio/CMU-StarterProject
 - Compile the interface (protocol buffer definition):
 
 $ cd CloudCode/python
