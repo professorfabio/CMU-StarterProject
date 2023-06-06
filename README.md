@@ -48,11 +48,11 @@ $ pip3 install kafka-python
 
 (Also if necessary, read this instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor)
 
-(If necessary, edit the const.py file with the IP address of the Kafka Broker -- server-1)
+(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server-1)
 
 - Clone the repo:
 
-$ git clone https://github.com/professorfabio/SSU-2022_2-StarterProject.git
+$ git clone https://github.com/professorfabio/CMU-StarterProject
 
 (If necessary, install git)
 
@@ -63,6 +63,10 @@ $ cd IoTCode
 $ python3 device-controller.py
 
 ### d. On a client machine (may be on the cloud or on a local machine):
+
+- Clone the repo:
+
+$ git clone https://github.com/professorfabio/CMU-StarterProject
 
 - Compile the interface:
 
@@ -76,7 +80,7 @@ $ python3 thermometer_client.py
 
 $ python3 led_client.py 1 red  --or-- $ python3 led_client.py 0 red (turn on and off, respectively. Just examples)
 
-(If necessary, edit the const.py file with the IP address of the gRPC server -- server-2)
+(If necessary, edit the const.py file with the **public** IP address of the gRPC server -- server-2)
 
 ## Overall structure of the system
 
