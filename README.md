@@ -14,6 +14,7 @@ This repository contains the three main components used in the class project, na
 
 #### When doing it for the first time:
 Install Apache Kafka. See instructions in Kafka's Quickstart page: https://kafka.apache.org/quickstart or, else, ask ChatGPT at your own risk ;-)
+
 Edit config/server.properties to uncomment the line starting with advertised_listeners and replace the domain name with the public IP address of the machine where the Broker will run (server-1) 
 
 $ bin/zookeeper-server-start.sh config/zookeeper.properties
