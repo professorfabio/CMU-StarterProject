@@ -14,11 +14,11 @@ This repository contains the three main components used in the class project, na
 
 #### Installing Kafka (only when doing it for the first time):
 - Install Java (JDK)
-
+```
 $ sudo apt update
 
 $ sudo apt install default-jdk
-
+```
 - Download, install (just uncompress) and configure Apache Kafka. See instructions in Kafka's Quickstart page: https://kafka.apache.org/quickstart or, else, ask ChatGPT at your own risk ;-)
 
 $ curl --output kafka_2.13-4.0.0.tgz https://dlcdn.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz
