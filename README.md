@@ -2,42 +2,46 @@
 
 This repository contains the three main components used in the class project, namely:
 
-1. IoT Code: Code to run on the Raspberry Pi, which will act as an IoT device with sensors and actuators. Obs.: Without the Raspberry Pi kits, you may run this part on a usual machine (either local or on the cloud), simulating the temperature sensor (e.g., a routine that generates random temperature values) and the actuator (led - a simple on-off variable).
+1. IoT Code: Code to run on the Raspberry Pi, which acts as an IoT device with sensors and actuators. Obs.: If a Raspberry Pi sensor kit is not available, you may run this component on a usual machine (either local or on the cloud), simulating the temperature and light sensors (e.g., with a routine that generates random temperature and luminosity values), as well as the actuator (e.g., replacing the led with a simple on-off variable).
 
-2. Cloud Code: Code to run on the cloud servers - Kafka consumer and producer; gRPC IoT service
+2. Cloud Code: Code to run on the cloud servers, composed of two parts: Kafka client (consumer and producer); and gRPC-based Web service that represents an IoT device (as a rudimentary digital twin of the device). 
 
-3. Client Code: command line gRPC clients of the IoT service
+3. Client Code: command line gRPC clients used to illustrate access to the the Web service that represents the IoT device.
 
 ## Steps to run the demo:
 
 ### a. Start Kafka on a cloud-based server (server-1):
 
 #### When doing it for the first time:
-Install Apache Kafka. See instructions in Kafka's Quickstart page: https://kafka.apache.org/quickstart or, else, ask ChatGPT at your own risk ;-)
+- Install Apache Kafka. See instructions in Kafka's Quickstart page: https://kafka.apache.org/quickstart or, else, ask ChatGPT at your own risk ;-)
 
-Edit config/server.properties to uncomment the line starting with advertised_listeners and replace the domain name with the public IP address of the machine where the Broker will run (server-1) 
+Important: Edit config/server.properties to uncomment the line starting with advertised_listeners and replace the domain name with the public IP address of the machine where the Broker will run (server-1). It is recommended to use a fixed public IP address for this machine.
+
+#### Once Kafka is properly installed and configured (see above), run both the Zookeeper and Kafka servers: 
 
 $ bin/zookeeper-server-start.sh config/zookeeper.properties
 
 $ bin/kafka-server-start.sh config/server.properties
 
-(If necessary, edit the server.properties file to change the IP address of the Kafka Broker) 
-
-
 ### b. On another cloud-based server (server-2):
+
+#### When doing it for the first time:
 
 - Install gRPC for Python - see instructions on https://grpc.io/docs/languages/python/quickstart/
 
 - Clone the repo: 
 
 $ git clone https://github.com/professorfabio/CMU-StarterProject
+
 - Compile the interface (protocol buffer definition):
 
 $ cd CloudCode/python
 
 $ python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/iot_service.proto
 
-- Run virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC service):
+#### Run the Kafka client and the Web service that represents an IoT device:
+
+- Run virtual_device_service.py (it contains the cloud-based Consumer and Producer, and well as the gRPC Web service):
 
 $ python3 virtual_device_service.py
 
@@ -45,13 +49,15 @@ $ python3 virtual_device_service.py
 
 ### c. On the Raspberry Pi:
 
+#### When doing it for the first time:
+
 - Install the Kafka Python client:
 
 $ pip3 install kafka-python
 
-(If necessary install python3-pip first)
+(If necessary, install python3-pip first)
 
-(Also if necessary, read this instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor)
+Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
 
 (If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server-1)
 
@@ -60,6 +66,8 @@ $ pip3 install kafka-python
 $ git clone https://github.com/professorfabio/CMU-StarterProject
 
 (If necessary, install git)
+
+#### If the Kafka Python client has already been installed and no changes have been made to the code in the repo, jump straight to this step:
 
 - Run device-controller.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
 
