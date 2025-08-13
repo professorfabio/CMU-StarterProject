@@ -60,6 +60,10 @@ bin/kafka-server-start.sh config/server.properties
 
 - See instructions on https://grpc.io/docs/languages/python/quickstart/
 
+#### Install kafka-python (Kafka client for Python)
+
+- See instructions on https://kafka-python.readthedocs.io/en/master/
+
 #### Install and compile the web service:
 
 - Clone the repo (if not done before): 
@@ -69,7 +73,7 @@ git clone https://github.com/professorfabio/CMU-StarterProject
 
 - Compile the interface (if not done before):
 ```
-cd CloudCode/python
+cd CMU-StarterProject/CloudCode/python
 ```
 ```
 python3 -m grpc_tools.protoc -I../protos --python_out=. --grpc_python_out=. ../protos/iot_service.proto
