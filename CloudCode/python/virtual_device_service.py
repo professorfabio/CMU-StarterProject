@@ -18,7 +18,7 @@ led_state = {'red':0, 'green':0}
 def consume_temperature():
     global current_temperature
     consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
-    consumer.subscribe(topics=('temperature'))
+    consumer.subscribe(topics=['temperature'])
     for msg in consumer:
         print ('Received Temperature: ', msg.value.decode())
         current_temperature = msg.value.decode()
@@ -27,7 +27,7 @@ def consume_temperature():
 def consume_light_level():
     global current_light_level
     consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
-    consumer.subscribe(topics=('lightlevel'))
+    consumer.subscribe(topics=['lightlevel'])
     for msg in consumer:
         print ('Received Light Level: ', msg.value.decode())
         current_light_level = msg.value.decode()
@@ -74,3 +74,4 @@ if __name__ == '__main__':
     for color in led_state.keys():
         produce_led_command (led_state[color], color)
     serve()
+
