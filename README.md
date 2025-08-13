@@ -52,7 +52,40 @@ bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.p
 bin/kafka-server-start.sh config/server.properties
 ```
 
-### b. On another cloud-based server (server02):
+### b. On the Raspberry Pi:
+- Open a command-line interface (shell) on the Raspberry Pi
+
+- Install the Kafka Python client (if not done before):
+```
+pip3 install kafka-python
+```
+
+(If necessary, install python3-pip first)
+
+- Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
+
+(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server01)
+
+- Clone the repo:
+```
+git clone https://github.com/professorfabio/CMU-StarterProject
+```
+
+(If necessary, install git)
+
+#### If the Kafka Python client has already been installed and no changes have been made to the code in the repo, jump straight to this step:
+
+- Run device-controller.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
+
+```
+cd IoTCode
+```
+```
+python3 device-controller.py
+```
+
+
+### c. On another cloud-based server (server02):
 
 - Open a command-line interface (shell) on the server
 
@@ -88,37 +121,6 @@ python3 virtual_device_service.py
 
 (If necessary, edit the const.py file with the IP address of the Kafka Broker -- server01)
 
-### c. On the Raspberry Pi:
-- Open a command-line interface (shell) on the Raspberry Pi
-
-- Install the Kafka Python client (if not done before):
-```
-pip3 install kafka-python
-```
-
-(If necessary, install python3-pip first)
-
-- Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
-
-(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server01)
-
-- Clone the repo:
-```
-git clone https://github.com/professorfabio/CMU-StarterProject
-```
-
-(If necessary, install git)
-
-#### If the Kafka Python client has already been installed and no changes have been made to the code in the repo, jump straight to this step:
-
-- Run device-controller.py (it contains IoT-based Producer and Consumer, which produce events from sensors and consume events for the actuators)
-
-```
-cd IoTCode
-```
-```
-python3 device-controller.py
-```
 
 ### d. On a client machine (may be on the cloud or on a local machine):
 
