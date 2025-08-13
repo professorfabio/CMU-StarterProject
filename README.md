@@ -10,9 +10,9 @@ This repository contains the three main components used in the class project, na
 
 ## Steps to run the demo:
 
-### a. Start Kafka on a cloud-based server (server-1):
+### a. Start Kafka on a cloud-based server (server01):
 
-#### Installing Apache Kafka (only when doing it for the first time):
+#### Installing and configuring Apache Kafka (only when doing it for the first time):
 - Install Java (JDK)
   
 ```$ sudo apt update```
@@ -25,27 +25,29 @@ This repository contains the three main components used in the class project, na
 
 ```$ tar -xzf kafka_2.13-4.0.0.tgz```
 
-#### Enabling remote access to the Kafka broker
-**Important:** To enable remote access to the broker, edit the file *config/server.properties* (in the kafka directory) in order to change the line starting with *advertised_listeners*, replacing (only) the first occurrence of *localhost* with the **IP address** of the machine where the Broker will run (server-1). It is recommended to use a fixed public IP address for this machine. That line should look like this:
-
-#### Once Kafka is properly installed and configured (see above), run these commands to execute it: 
+##### Basic configuration of Kafka 
 ```
 $ cd kafka_2.13-4.0.0/
 ```
 
+**Important: Enable remote access to the broker:** Edit the file **config/server.properties** (in the kafka directory) in order to change the line starting with **advertised_listeners**, replacing (only) the first occurrence of **localhost** with the **IP address** of the machine where the Broker will run (server01). It is recommended to use a fixed public IP address for this machine. That line should look like this:
+
+**Then create the metadata files with the configuration**
+
 ```
 $ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
 ```
-
 ```
 $ bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.properties
 ```
+
+#### Once configured, run the following command to start the broker
 
 ```
 $ bin/kafka-server-start.sh config/server.properties
 ```
 
-### b. On another cloud-based server (server-2):
+### b. On another cloud-based server (server02):
 
 #### When doing it for the first time:
 
@@ -67,7 +69,7 @@ $ bin/kafka-server-start.sh config/server.properties
 
 ```$ python3 virtual_device_service.py```
 
-(If necessary, edit the const.py file with the IP address of the Kafka Broker -- server-1)
+(If necessary, edit the const.py file with the IP address of the Kafka Broker -- server01)
 
 ### c. On the Raspberry Pi:
 
@@ -81,7 +83,7 @@ $ bin/kafka-server-start.sh config/server.properties
 
 Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
 
-(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server-1)
+(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server01)
 
 - Clone the repo:
 
@@ -115,7 +117,7 @@ Obs.: read these instructions to enable communication with the temperature senso
 
 ```$ python3 led_client.py 1 red  --or-- $ python3 led_client.py 0 red (turn on and off, respectively. Just examples)```
 
-(If necessary, edit the const.py file with the **public** IP address of the gRPC server -- server-2)
+(If necessary, edit the const.py file with the **public** IP address of the gRPC server -- server02)
 
 ## Overall structure of the system
 
