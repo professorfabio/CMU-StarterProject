@@ -60,6 +60,9 @@ bin/kafka-server-start.sh config/server.properties
 pip3 install kafka-python
 ```
 
+See detailed instructions on https://kafka-python.readthedocs.io/en/master/
+
+
 (If necessary, install python3-pip first)
 
 - Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
