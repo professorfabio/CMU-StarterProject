@@ -27,17 +27,26 @@ This repository contains the three main components used in the class project, na
 
 - Basic configuration of Kafka
 
-```$ cd kafka_2.13-4.0.0/```
 
-```$ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"```
-
-```$ bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.properties```
 
 Important: Edit config/server.properties to uncomment the line starting with advertised_listeners and replace the domain name with the public IP address of the machine where the Broker will run (server-1). It is recommended to use a fixed public IP address for this machine.
 
-#### Once Kafka is properly installed and configured (see above), run both the Zookeeper and Kafka servers: 
+#### Once Kafka is properly installed and configured (see above), run these commands to execute it: 
+```
+$ cd kafka_2.13-4.0.0/
+```
 
-```$ bin/kafka-server-start.sh config/server.properties```
+```
+$ KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
+```
+
+```
+$ bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.properties
+```
+
+```
+$ bin/kafka-server-start.sh config/server.properties
+```
 
 ### b. On another cloud-based server (server-2):
 
