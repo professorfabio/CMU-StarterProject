@@ -26,7 +26,7 @@ This repository contains the three main components used in the class project, na
 ```$ tar -xzf kafka_2.13-4.0.0.tgz```
 
 #### Enabling remote access to the Kafka broker
-To enable remote access to the broker, edit the file *config/server.properties* (in the kafka directory) in order to change the line starting with *advertised_listeners*, replacing (only) the first occurrence of *localhost* with the **IP address** of the machine where the Broker will run (server-1). It is recommended to use a fixed public IP address for this machine. That line should look like this:
+**Important:** To enable remote access to the broker, edit the file *config/server.properties* (in the kafka directory) in order to change the line starting with *advertised_listeners*, replacing (only) the first occurrence of *localhost* with the **IP address** of the machine where the Broker will run (server-1). It is recommended to use a fixed public IP address for this machine. That line should look like this:
 
 #### Once Kafka is properly installed and configured (see above), run these commands to execute it: 
 ```
