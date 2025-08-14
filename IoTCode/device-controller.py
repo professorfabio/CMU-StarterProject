@@ -17,7 +17,7 @@ light_sensor_pin = 29
 
 
 # Initialize GPIO for the LEDs
-GPIO.setwarnings(False) # Ignore warning for now
+#GPIO.setwarnings(False) # Ignore warning for now -- obsolete?
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 GPIO.setup(red_led_pin, GPIO.OUT, initial=GPIO.LOW) # Set pin 16 to be an output pin and set initial value to low (off)
 GPIO.setup(green_led_pin, GPIO.OUT, initial=GPIO.LOW) # Idem for pin 18
@@ -97,4 +97,5 @@ while True:
         last_reported_light_level = light_level
         producer.send('lightlevel', str(light_level).encode())
     time.sleep(1)
+
 
