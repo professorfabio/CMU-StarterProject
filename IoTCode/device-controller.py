@@ -3,7 +3,7 @@ import time
 from kafka import KafkaProducer, KafkaConsumer
 import math
 import threading
-import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
+import gpio as GPIO # Import Raspberry Pi GPIO library
 from const import *
 
 # For access to the temperature sensor
@@ -97,3 +97,4 @@ while True:
         last_reported_light_level = light_level
         producer.send('lightlevel', str(light_level).encode())
     time.sleep(1)
+
