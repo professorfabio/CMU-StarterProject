@@ -63,7 +63,7 @@ def read_light_sensor (pin_to_circuit):
 
 def consume_led_command():
     consumer = KafkaConsumer(bootstrap_servers=KAFKA_SERVER+':'+KAFKA_PORT)
-    consumer.subscribe(topics=('ledcommand'))
+    consumer.subscribe(topics=['ledcommand'])
     ledpin = 0
     for msg in consumer:
         print ('Led command received: ', msg.value)
@@ -97,6 +97,7 @@ while True:
         last_reported_light_level = light_level
         producer.send('lightlevel', str(light_level).encode())
     time.sleep(1)
+
 
 
 
