@@ -65,9 +65,14 @@ See detailed instructions on https://kafka-python.readthedocs.io/en/master/
 
 (If necessary, install python3-pip first)
 
-- Obs.: read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
+- Read these instructions to enable communication with the temperature sensor via GPIO: https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_1-Wire_DS18B20_Sensor
 
-(If necessary, edit the const.py file with the **public** IP address of the Kafka Broker -- server01)
+- Install the Python module for GPIO access:
+```
+pip3 install gpio
+```
+
+Edit the const.py file with the **public** IP address of the Kafka Broker (server01)
 
 - Clone the repo:
 ```
